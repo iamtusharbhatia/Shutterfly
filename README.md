@@ -3,8 +3,8 @@ Shutterfly Customer Lifetime Value Code-Challenge
 
 ### Critical Design Decision
 
-* For any event if any of "required data" fields has any missing or null value then that event's data won't be ingested into the Data Structure.
-* I have created an additional Data Structure to take care of the events which occur in an unordered way, like if a new order comes before the create event for that customer.
+* For any event if the **required** data fields has any missing or null value then that event's data won't be ingested into the Data Structure.
+* I have created an additional Data Structure to take care of the events which occur in an unordered way, like if a new order comes before the create event for that customer, 
 
 ### Assumptions
 
