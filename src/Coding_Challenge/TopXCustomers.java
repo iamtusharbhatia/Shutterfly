@@ -42,8 +42,7 @@ public class TopXCustomers {
 	private List<JsonObject> unorderedOperations = new ArrayList<JsonObject>();
 	private static final Gson gson = new Gson();
 
-
-
+	
 
 	public void addUpdateCustomer(JsonObject e) {
 		String custId = e.get("key").getAsString();
@@ -80,6 +79,7 @@ public class TopXCustomers {
 			}
 		}
 	}
+	
 
 	public void addNewSiteVisit(JsonObject e){
 		String key = e.get("key").getAsString();
@@ -99,6 +99,7 @@ public class TopXCustomers {
 			}
 		}
 	}
+	
 
 	public void addImage(JsonObject e){
 		String key = e.get("key").getAsString();
@@ -118,6 +119,7 @@ public class TopXCustomers {
 			}
 		}
 	}
+	
 
 	public void addUpdateOrder(JsonObject e){
 		String key = e.get("key").getAsString();
@@ -179,6 +181,7 @@ public class TopXCustomers {
 			}
 		}
 	}
+	
 
 	public LocalDate toLocalDate(String date){
 
@@ -241,6 +244,7 @@ public class TopXCustomers {
 			customerLTV.put(id, ltv);
 		}
 	}
+	
 
 	private PriorityQueue<Entry<String,Double>> ltvQueue = new PriorityQueue<>(new MyComparator());
 
@@ -317,6 +321,7 @@ public class TopXCustomers {
 		bw.close();
 	}
 
+	
 	//This program will return a Map where the key will be the customer id and the value will be revenuePerVisit for
 	//that customer
 	public Map<String, Double> revenuePerVisits(){
@@ -428,7 +433,6 @@ public class TopXCustomers {
 		TopXCustomers topCust = new TopXCustomers();
 
 		try {
-
 			//Parsing the input file here		
 			BufferedReader br = new BufferedReader(new FileReader("input"));
 			JsonArray jsonArray = gson.fromJson(br, JsonArray.class);
