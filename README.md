@@ -14,8 +14,9 @@
 ### Assumptions
 
 1. Average customer lifespan for every customer is 10 years.
-2. While updating customer we are just updating last_name, adr_city, adr_state and not `event_time` because if we update it, we will lose the customer creation date which is necessary for LTV calculation.
-3. While updating orders we are just updating event_time, total_amount and not customer_id  because we need to preserve customer id corresponding to a particular order.
+2. If an order has been placed then it is assumed that, there is also a site_visit entry in the input data corresponding to that order.
+3. While updating customer we are just updating last_name, adr_city, adr_state and not `event_time` because if we update it, we will lose the customer creation date which is necessary for LTV calculation.
+4. While updating orders we are just updating event_time, total_amount and not customer_id  because we need to preserve customer id corresponding to a particular order.
 
 ### External Libraries Used
 
