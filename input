@@ -1,10 +1,159 @@
-[{"type": "CUSTOMER", "verb": "NEW", "key": "96f55c7d8f42", "event_time": "2017-01-06T12:46:46.384Z", "last_name": "Smith", "adr_city": "Middletown", "adr_state": "AK"},
-{"type": "SITE_VISIT", "verb": "NEW", "key": "ac05e815502f", "event_time": "2017-01-06T12:45:52.041Z", "customer_id": "96f55c7d8f42", "tags": [{"some key": "some value"}]},
-{"type": "IMAGE", "verb": "UPLOAD", "key": "d8ede43b1d9f", "event_time": "2017-01-06T12:47:12.344Z", "customer_id": "96f55c7d8f42", "camera_make": "Canon", "camera_model": "EOS 80D"},
-{"type": "CUSTOMER", "verb": "NEW", "key": "96f55c7d8f41", "event_time": "2017-01-07T12:46:46.384Z", "last_name": "Smith", "adr_city": "Middletown", "adr_state": "AK"},
-{"type": "CUSTOMER", "verb": "NEW", "key": "96f55c7d8f43", "event_time": "2017-01-09T12:46:46.384Z", "last_name": "Smith", "adr_city": "Middletown", "adr_state": "AK"},
-{"type": "CUSTOMER", "verb": "NEW", "key": "96f55c7d8f44", "event_time": "2017-01-10T12:46:46.384Z", "last_name": "Smith", "adr_city": "Middletown", "adr_state": "AK"},
-{"type": "ORDER", "verb": "NEW", "key": "68d84e5d1a43", "event_time": "2017-01-17T12:55:55.555Z", "customer_id": "96f55c7d8f43", "total_amount": "19.34 USD"},
-{"type": "ORDER", "verb": "NEW", "key": "68d84e5d1a43", "event_time": "2017-01-19T12:55:55.555Z", "customer_id": "96f55c7d8f44", "total_amount": "9.34 USD"},
-{"type": "ORDER", "verb": "NEW", "key": "68d84e5d1a43", "event_time": "2017-01-06T12:55:55.555Z", "customer_id": "96f55c7d8f42", "total_amount": "12.34 USD"},
-{"type": "ORDER", "verb": "NEW", "key": "68d84e5d1a43", "event_time": "2017-01-08T12:55:55.555Z", "customer_id": "96f55c7d8f41", "total_amount": "18.34 USD"}]
+[
+    {
+       "type":"CUSTOMER",
+       "verb":"NEW",
+	   "key":"rishi000",
+       "event_time":"2017-01-06T12:46:46.384Z",
+       "last_name":"Grover",
+       "adr_city":"Richardson",
+       "adr_state":"TX"
+    },
+    {
+       "type":"ORDER",
+       "verb":"NEW",
+	   "key":"1234",
+       "event_time":"2017-01-06T12:55:55.555Z",
+       "customer_id":"rishi000",
+       "total_amount":"100.34 USD"
+    },
+    {
+       "type":"ORDER",
+       "verb":"UPDATE",
+       "key":"tushar123",
+       "event_time":"2017-01-06T12:55:55.555Z",
+       "customer_id":"tushar789",
+       "total_amount":"1200.34 USD"
+    },
+    {
+       "type":"ORDER",
+       "verb":"NEW",
+       "key":"tushar123",
+       "event_time":"2017-01-06T12:55:55.555Z",
+       "customer_id":"tushar789",
+       "total_amount":"12000.34 USD"
+    },
+    {
+       "type":"CUSTOMER",
+       "verb":"NEW",
+       "key":"tushar789",
+       "event_time":"2017-01-06T12:46:46.384Z",
+       "last_name":"Bhatia",
+       "adr_city":"Dallas",
+       "adr_state":"TX"
+    },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"96f55c7d8f42",
+      "event_time":"2017-01-06T12:46:46.384Z",
+      "last_name":"Smith",
+      "adr_city":"Middletown",
+      "adr_state":"AK"
+   },
+   {
+      "type":"SITE_VISIT",
+      "verb":"NEW",
+      "key":"ac05e815502f",
+      "event_time":"2017-01-06T12:45:52.041Z",
+      "customer_id":"96f55c7d8f42",
+      "tags":[
+         {
+            "some key":"some value"
+         }
+      ]
+   },
+   {
+      "type":"IMAGE",
+      "verb":"UPLOAD",
+      "key":"d8ede43b1d9f",
+      "event_time":"2017-01-06T12:47:12.344Z",
+      "customer_id":"96f55c7d8f42",
+      "camera_make":"Canon",
+      "camera_model":"EOS 80D"
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"96f55c7d8f41",
+      "event_time":"2017-01-07T12:46:46.384Z",
+      "last_name":"Smith",
+      "adr_city":"Middletown",
+      "adr_state":"AK"
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"96f55c7d8f43",
+      "event_time":"2017-01-09T12:46:46.384Z",
+      "last_name":"Smith",
+      "adr_city":"Middletown",
+      "adr_state":"AK"
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"96f55c7d8f44",
+      "event_time":"2017-01-10T12:46:46.384Z",
+      "last_name":"Smith",
+      "adr_city":"Middletown",
+      "adr_state":"AK"
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"96f55c7d8f420000",
+      "event_time":"2016-01-09T12:46:46.384Z",
+      "last_name":"Simion",
+      "adr_city":"Jersey",
+      "adr_state":"NY"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"96f55",
+      "event_time":"2017-01-17T12:55:55.555Z",
+      "customer_id":"96f55c7d8f420000",
+      "total_amount":"190000.34 USD"
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"96f55c7d8f43",
+      "event_time":"2017-01-09T12:46:46.384Z",
+      "last_name":"Smith",
+      "adr_city":"Middletown",
+      "adr_state":"AK"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"68d84e5d1a43",
+      "event_time":"2017-01-17T12:55:55.555Z",
+      "customer_id":"96f55c7d8f43",
+      "total_amount":"19.34 USD"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"68d84e5d1a43",
+      "event_time":"2017-01-19T12:55:55.555Z",
+      "customer_id":"96f55c7d8f44",
+      "total_amount":"9.34 USD"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"68d84e5d1a43",
+      "event_time":"2017-01-06T12:55:55.555Z",
+      "customer_id":"96f55c7d8f42",
+      "total_amount":"12.34 USD"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"68d84e5d1a43",
+      "event_time":"2017-01-08T12:55:55.555Z",
+      "customer_id":"96f55c7d8f41",
+      "total_amount":"18.34 USD"
+   }
+]
