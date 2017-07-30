@@ -37,101 +37,145 @@ public class TopXCustomers {
 
 	private LocalDate timeFrameEndDate = LocalDate.parse("0001-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	private Map<String,Double> customerLTV = new HashMap<String,Double>();
+
+	//Additional list to maintain the unordered ingest operations to be inserted later
+	private List<JsonObject> unorderedOperations = new ArrayList<JsonObject>();
 	private static final Gson gson = new Gson();
+
+
 
 
 	public void addUpdateCustomer(JsonObject e) {
 		String custId = e.get("key").getAsString();
+		String verb = e.get("verb").getAsString();
+		String event_time = e.get("event_time").getAsString();
 
-		if(e.get("verb").getAsString().equals("NEW")){
-			customers.put(custId, gson.fromJson(e, Customer.class));
-		} else {
-			//This else block updates the customer details like last_name, adr_city, adr_city and doesn't update the 
-			//event_time otherwise we'll lose the time when the customer was created which is required to calculate LTV
-			if(customers.containsKey(custId)){
-				Customer cust = customers.get(custId);
+		if(custId != null && !custId.equals("") && verb != null && !verb.equals("") &&
+				event_time != null && !event_time.equals("")){
 
-				String last_name = e.get("last_name").getAsString();
-				String adr_city = e.get("adr_city").getAsString();
-				String adr_state = e.get("adr_state").getAsString();
+			if(verb.equals("NEW")){
+				customers.put(custId, gson.fromJson(e, Customer.class));
+			} else {
+				//This else block updates the customer details like last_name, adr_city, adr_city and doesn't update the 
+				//event_time otherwise we'll lose the time when the customer was created which is required to calculate LTV
+				if(customers.containsKey(custId)){
+					Customer cust = customers.get(custId);
 
-				if(last_name != null){
-					cust.setLast_name(last_name);
-				}
-				if(adr_city != null){
-					cust.setAdr_city(adr_city);
-				}
-				if(adr_state != null){
-					cust.setAdr_state(adr_state);
+					String last_name = e.get("last_name").getAsString();
+					String adr_city = e.get("adr_city").getAsString();
+					String adr_state = e.get("adr_state").getAsString();
+
+					if(last_name != null){
+						cust.setLast_name(last_name);
+					}
+					if(adr_city != null){
+						cust.setAdr_city(adr_city);
+					}
+					if(adr_state != null){
+						cust.setAdr_state(adr_state);
+					}
+				} else {
+					unorderedOperations.add(e);
 				}
 			}
 		}
-
 	}
 
 	public void addNewSiteVisit(JsonObject e){
+		String key = e.get("key").getAsString();
 		String custId = e.get("customer_id").getAsString();
+		String verb = e.get("verb").getAsString();
+		String event_time = e.get("event_time").getAsString();
 
-		//It will only insert value in visits data structure if there is already an entry for that customer in the
-		//customer table.
-		if(customers.containsKey(custId)){
-			visits.put(custId,gson.fromJson(e, Site_Visit.class));
+		if(custId != null && !custId.equals("") && verb != null && !verb.equals("") &&
+				event_time != null && !event_time.equals("") && key != null && !key.equals("")){
+
+			//It will only insert value in visits data structure if there is already an entry for that customer in the
+			//customer table.
+			if(customers.containsKey(custId)){
+				visits.put(custId,gson.fromJson(e, Site_Visit.class));
+			} else {
+				unorderedOperations.add(e);
+			}
 		}
 	}
 
 	public void addImage(JsonObject e){
+		String key = e.get("key").getAsString();
 		String custId = e.get("customer_id").getAsString();
+		String verb = e.get("verb").getAsString();
+		String event_time = e.get("event_time").getAsString();
 
-		//It will only insert value in images data structure if there is already an entry for that customer in the
-		//customer table.
-		if(customers.containsKey(custId)){
-			images.add(gson.fromJson(e, Image.class));
+		if(custId != null && !custId.equals("") && verb != null && !verb.equals("") &&
+				event_time != null && !event_time.equals("") && key != null && !key.equals("")){
+
+			//It will only insert value in images data structure if there is already an entry for that customer in the
+			//customer table.
+			if(customers.containsKey(custId)){
+				images.add(gson.fromJson(e, Image.class));
+			} else {
+				unorderedOperations.add(e);
+			}
 		}
 	}
 
 	public void addUpdateOrder(JsonObject e){
+		String key = e.get("key").getAsString();
 		String custId = e.get("customer_id").getAsString();
+		String verb = e.get("verb").getAsString();
+		String event_time = e.get("event_time").getAsString();
+		String total_amount = e.get("total_amount").getAsString();
 
-		//It will only insert/update value in orders data structure if there is already an entry for that customer in the
-		//customer table.
-		if(customers.containsKey(custId)){
 
-			if(e.get("verb").getAsString().equals("NEW")){
+		if(custId != null && !custId.equals("") && verb != null && !verb.equals("") && 
+				event_time != null && !event_time.equals("") && key != null && !key.equals("") && 
+				total_amount != null && !total_amount.equals("")){
 
-				//Here I am calculating the end date of the time frame provided in the test case
-				LocalDate date = toLocalDate(e.get("event_time").getAsString());
-				if(date.compareTo(timeFrameEndDate) > 0){
-					timeFrameEndDate = date;
-				}
+			//It will only insert/update value in orders data structure if there is already an entry for that customer in the
+			//customer table.
+			if(customers.containsKey(custId)){
 
-				//Now we'll add the new order details to the orders list of the respective customer
-				if(orders.containsKey(custId)){
-					List<Order> list= orders.get(custId);
-					list.add(gson.fromJson(e, Order.class));
-					orders.put(custId, list);
+				if(e.get("verb").getAsString().equals("NEW")){
+
+					//Here I am calculating the end date of the time frame provided in the test case
+					LocalDate date = toLocalDate(e.get("event_time").getAsString());
+					if(date.compareTo(timeFrameEndDate) > 0){
+						timeFrameEndDate = date;
+					}
+
+					//Now we'll add the new order details to the orders list of the respective customer
+					if(orders.containsKey(custId)){
+						List<Order> list= orders.get(custId);
+						list.add(gson.fromJson(e, Order.class));
+						orders.put(custId, list);
+					} else {
+						List<Order> list = new LinkedList<Order>();
+						list.add(gson.fromJson(e, Order.class));
+						orders.put(custId, list);
+					}
 				} else {
-					List<Order> list = new LinkedList<Order>();
-					list.add(gson.fromJson(e, Order.class));
-					orders.put(custId, list);
-				}
-			} else {
 
-				String orderId = e.get("key").getAsString();
-				List<Order> list= orders.get(custId);
-
-				for(Order o: list){
-					if(orderId.equals(o.getKey())){
-						String event_time = e.get("event_time").getAsString();
-						String total_amount = e.get("total_amount").getAsString();
-
-						if(event_time != null){
-							o.setEvent_time(event_time);
+					String orderId = e.get("key").getAsString();
+					List<Order> list= orders.get(custId);
+					boolean flag = false;
+					
+					if(list != null){
+						for(Order o: list){
+							if(orderId.equals(o.getKey())){
+								o.setEvent_time(event_time);
+								o.setTotal_amount(total_amount );
+								flag = true;
+							}
 						}
-						if(total_amount  != null){
-							o.setTotal_amount(total_amount );
+						if(flag == false){
+							unorderedOperations.add(e);
 						}
+					} else {
+						unorderedOperations.add(e);
 					}
 				}
+			} else {
+				unorderedOperations.add(e);
 			}
 		}
 	}
@@ -160,8 +204,7 @@ public class TopXCustomers {
 			addImage(e);
 		} else if (type.equals("ORDER")){
 			addUpdateOrder(e);
-		} 
-
+		}
 	}
 
 
@@ -178,24 +221,25 @@ public class TopXCustomers {
 		//Here I calculate time frame for a particular customer by subtracting the timeFrameEndDate of test case with
 		//the customer's creation date.
 		long daysBetween = ChronoUnit.DAYS.between(startDate, timeFrameEndDate);
+		
 		if(daysBetween < 0 ){
-			daysBetween = 0;
+			customerLTV.put(id, 0.0);
+		} else {
+			List<Order> orderList = orders.get(id);
+			if(orderList != null){
+				for(Order o: orderList){
+					String amt = o.getTotal_amount();
+					amt = amt.split(" ")[0];
+					totalSpending = totalSpending + Double.parseDouble(amt);
+				}
+			}
+			
+			//Here I am calculating spending per week by the customer
+			spendingPerWeek = (totalSpending / daysBetween)*7;
+
+			ltv = 52*(spendingPerWeek) * 10;
+			customerLTV.put(id, ltv);
 		}
-
-		//Extracting all the orders corresponding to a particular customer
-		List<Order> orderList = orders.get(id);
-
-		for(Order o: orderList){
-			String amt = o.getTotal_amount();
-			amt = amt.split(" ")[0];
-			totalSpending = totalSpending + Double.parseDouble(amt);
-		}
-
-		//Here I am calculating spending per week by the customer
-		spendingPerWeek = (totalSpending / daysBetween)*7;
-
-		ltv = 52*(spendingPerWeek) * 10;
-		customerLTV.put(id, ltv);
 	}
 
 	private PriorityQueue<Entry<String,Double>> ltvQueue = new PriorityQueue<>(new MyComparator());
@@ -223,6 +267,25 @@ public class TopXCustomers {
 			JsonObject jsonObj = (JsonObject)iterator.next();
 			ingest(jsonObj);
 		}
+
+		//This loop tries to again ingest the data which earlier came in an unordered way.
+		//Like If order update comes before the create event for that customer.
+		//So the initial while loop will skip the order insert because customer hasn't been created.
+		//And then finally when first while loop is completed then this addition loop will insert those unordered operations.
+		int count = 2;
+		while(count > 0){
+			List<JsonObject> tempUnorderedOperations = new ArrayList<JsonObject>(unorderedOperations);
+			unorderedOperations.clear();
+			
+			if(tempUnorderedOperations.size() > 0){
+				for(JsonObject e: tempUnorderedOperations){
+					ingest(e);
+				}
+			} else {
+				break;
+			}
+			count--;
+		}
 		//This for loop calculates customerLTV for each customer and adds it to a HashMap
 		for(Entry<String,Customer> obj: customers.entrySet()){
 			calculateLTV(obj.getKey());
@@ -238,8 +301,15 @@ public class TopXCustomers {
 		File fout = new File("output");
 		FileOutputStream fos = new FileOutputStream(fout);
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-
-		for(int i=0; i<x; i++){
+		
+		int size = 0;
+		if(x < ltvQueue.size()){
+			size = x;
+		} else {
+			size = ltvQueue.size();
+		}
+		
+		for(int i=0; i<size; i++){
 			Entry<String, Double> entry = ltvQueue.remove();
 			bw.write("Customer ID: " + entry.getKey() + " Lifetime Value: " + entry.getValue());
 			bw.newLine();
@@ -287,7 +357,7 @@ public class TopXCustomers {
 		//This final Map has customer ID as the key and total revenue per visit as its value.
 		Map<String, Double> totalRevenuePerVisit = new HashMap<String, Double>();
 		for(Entry<String,Double> obj: totalRevenuePerCust.entrySet()){
-			
+
 			int numOfvisits = numOfVisits.get(obj.getKey());
 			if(numOfvisits > 0){
 				totalRevenuePerVisit.put(obj.getKey(), obj.getValue() / numOfVisits.get(obj.getKey()));
@@ -333,14 +403,14 @@ public class TopXCustomers {
 			if(daysBetween < 0 ){
 				daysBetween = 0;
 			}
-			
+
 			numOfDays.put(obj.getKey(), (double)daysBetween);
 		}
 
 		//This final Map has customer ID as the key and total revenue per visit as its value.
 		Map<String, Double> visitsPerWeekPerCust = new HashMap<String, Double>();
 		for(Entry<String,Double> obj: numOfDays.entrySet()){
-			
+
 			int numOfvisitsForCust = numOfVisits.get(obj.getKey());
 			if(numOfvisitsForCust > 0){
 				visitsPerWeekPerCust.put(obj.getKey(), numOfVisits.get(obj.getKey())* 7 / obj.getValue());
@@ -351,20 +421,20 @@ public class TopXCustomers {
 		return visitsPerWeekPerCust;
 	}
 
-	
+
 
 	public static void main(String[] args) {
 
 		TopXCustomers topCust = new TopXCustomers();
 
 		try {
-			
+
 			//Parsing the input file here		
 			BufferedReader br = new BufferedReader(new FileReader("input"));
 			JsonArray jsonArray = gson.fromJson(br, JsonArray.class);
 
 			//This method will tell us the top X Life time Value customers
-			topCust.topXSimpleLTVCustomers(4, jsonArray);
+			topCust.topXSimpleLTVCustomers(3, jsonArray);
 
 			//Function to retrieve revenue / visit for all the customers
 			System.out.println("Revenue per visit for all the customers \n" + topCust.revenuePerVisits());
