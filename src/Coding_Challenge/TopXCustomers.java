@@ -315,7 +315,7 @@ public class TopXCustomers {
 		
 		for(int i=0; i<size; i++){
 			Entry<String, Double> entry = ltvQueue.remove();
-			bw.write("Customer ID: " + entry.getKey() + " Lifetime Value: " + entry.getValue());
+			bw.write("Customer ID: " + entry.getKey() + " | Lifetime Value: " + entry.getValue());
 			bw.newLine();
 		}
 		bw.close();
@@ -438,7 +438,7 @@ public class TopXCustomers {
 			JsonArray jsonArray = gson.fromJson(br, JsonArray.class);
 
 			//This method will tell us the top X Life time Value customers
-			topCust.topXSimpleLTVCustomers(3, jsonArray);
+			topCust.topXSimpleLTVCustomers(10, jsonArray);
 
 			//Function to retrieve revenue / visit for all the customers
 			System.out.println("Revenue per visit for all the customers \n" + topCust.revenuePerVisits());
