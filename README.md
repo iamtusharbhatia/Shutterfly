@@ -19,5 +19,5 @@
 
 ### External Libraries Used
 
-Please download 'gson-2.2.3.jar' and add as an external jar to the project.
+Gson --> 'gson-2.2.3.jar'
 http://www.java2s.com/Code/JarDownload/gson/gson-2.2.3.jar.zip
