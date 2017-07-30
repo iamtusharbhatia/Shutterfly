@@ -11,6 +11,11 @@
 4. Once all the ordered events have been processed then the additional Data Structure will be processed to inserts the unordered event in the `in-memory Data Structure`.
 5. Since `revenue / visit` and `visits / week` are important metrics to the business so, there are two functions **revenuePerVisits** & **visitsPerWeek** which help in achieving these functionalities.
 
+### Performance characteristic
+
+1. Keeping Performance in mind I have tried to use HashMap for the `in-memory Data Structure` instead of lists, wherever frequent searching is required, so that we can reduce the lookup time to **O(1)**.
+2. I have used `Priority Queue` to fetch the top **X Customer Lifetime Values** which will give us the least completxity.
+
 ### Assumptions
 
 1. Average customer lifespan for every customer is 10 years.
