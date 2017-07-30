@@ -240,12 +240,215 @@
       "customer_id":"96f55c7d8f41",
       "total_amount":"18.34 USD"
    },
-      {
+   {
       "type":"SITE_VISIT",
       "verb":"NEW",
       "key":"ac05e815502f",
       "event_time":"2017-01-08T12:45:52.041Z",
       "customer_id":"96f55c7d8f41",
+      "tags":[
+         {
+            "some key":"some value"
+         }
+      ]
+   },  
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"111111",
+      "event_time":"2016-01-09T12:46:46.384Z",
+      "last_name":"Simion",
+      "adr_city":"Jersey",
+      "adr_state":"NY"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"96f5775",
+      "event_time":"2017-01-12T12:55:55.555Z",
+      "customer_id":"111111",
+      "total_amount":"1300.34 USD"
+   },
+   {
+      "type":"SITE_VISIT",
+      "verb":"NEW",
+      "key":"ac05e815502f",
+      "event_time":"2017-01-12T12:45:52.041Z",
+      "customer_id":"111111",
+      "tags":[
+         {
+            "some key":"some value"
+         }
+      ]
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"222222",
+      "event_time":"2016-01-09T12:46:46.384Z",
+      "last_name":"Simion",
+      "adr_city":"Jersey",
+      "adr_state":"NY"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"96f5775",
+      "event_time":"2017-01-12T12:55:55.555Z",
+      "customer_id":"222222",
+      "total_amount":"700.34 USD"
+   },
+   {
+      "type":"SITE_VISIT",
+      "verb":"NEW",
+      "key":"ac05e815502f",
+      "event_time":"2017-01-12T12:45:52.041Z",
+      "customer_id":"222222",
+      "tags":[
+         {
+            "some key":"some value"
+         }
+      ]
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"3333333",
+      "event_time":"2016-01-09T12:46:46.384Z",
+      "last_name":"Simion",
+      "adr_city":"Jersey",
+      "adr_state":"NY"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"96f5775",
+      "event_time":"2017-01-12T12:55:55.555Z",
+      "customer_id":"3333333",
+      "total_amount":"500.34 USD"
+   },
+   {
+      "type":"SITE_VISIT",
+      "verb":"NEW",
+      "key":"ac05e815502f",
+      "event_time":"2017-01-12T12:45:52.041Z",
+      "customer_id":"3333333",
+      "tags":[
+         {
+            "some key":"some value"
+         }
+      ]
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"444444",
+      "event_time":"2016-01-09T12:46:46.384Z",
+      "last_name":"Simion",
+      "adr_city":"Jersey",
+      "adr_state":"NY"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"96f5775",
+      "event_time":"2017-01-12T12:55:55.555Z",
+      "customer_id":"444444",
+      "total_amount":"980.34 USD"
+   },
+   {
+      "type":"SITE_VISIT",
+      "verb":"NEW",
+      "key":"ac05e815502f",
+      "event_time":"2017-01-12T12:45:52.041Z",
+      "customer_id":"444444",
+      "tags":[
+         {
+            "some key":"some value"
+         }
+      ]
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"55555",
+      "event_time":"2016-01-09T12:46:46.384Z",
+      "last_name":"Simion",
+      "adr_city":"Jersey",
+      "adr_state":"NY"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"96f5775",
+      "event_time":"2017-01-12T12:55:55.555Z",
+      "customer_id":"55555",
+      "total_amount":"223.89 USD"
+   },
+   {
+      "type":"SITE_VISIT",
+      "verb":"NEW",
+      "key":"ac05e815502f",
+      "event_time":"2017-01-12T12:45:52.041Z",
+      "customer_id":"55555",
+      "tags":[
+         {
+            "some key":"some value"
+         }
+      ]
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"666666",
+      "event_time":"2016-01-09T12:46:46.384Z",
+      "last_name":"Simion",
+      "adr_city":"Jersey",
+      "adr_state":"NY"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"96f5775",
+      "event_time":"2017-01-12T12:55:55.555Z",
+      "customer_id":"666666",
+      "total_amount":"1300.34 USD"
+   },
+   {
+      "type":"SITE_VISIT",
+      "verb":"NEW",
+      "key":"ac05e815502f",
+      "event_time":"2017-01-12T12:45:52.041Z",
+      "customer_id":"666666",
+      "tags":[
+         {
+            "some key":"some value"
+         }
+      ]
+   },
+   {
+      "type":"CUSTOMER",
+      "verb":"NEW",
+      "key":"77777",
+      "event_time":"2016-01-09T12:46:46.384Z",
+      "last_name":"Simion",
+      "adr_city":"Jersey",
+      "adr_state":"NY"
+   },
+   {
+      "type":"ORDER",
+      "verb":"NEW",
+      "key":"96f5775",
+      "event_time":"2017-01-12T12:55:55.555Z",
+      "customer_id":"77777",
+      "total_amount":"860.34 USD"
+   },
+   {
+      "type":"SITE_VISIT",
+      "verb":"NEW",
+      "key":"ac05e815502f",
+      "event_time":"2017-01-12T12:45:52.041Z",
+      "customer_id":"77777",
       "tags":[
          {
             "some key":"some value"
